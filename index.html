@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome Mukta</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: #fff0f6;
+    }
+    #welcomeSection, #flowerSection {
+      display: none;
+    }
+    .flower {
+      font-size: 2rem;
+      animation: float 5s linear infinite;
+      position: absolute;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    a {
+      font-size: 1.2rem;
+      color: #d63384;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="linkSection">
+    <a onclick="showWelcome()">Click here to see a surprise for Mukta 💖</a>
+  </div>
+
+  <div id="welcomeSection">
+    <h1>Welcome Mukta 🌸</h1>
+    <button onclick="showFlowers()">Extract</button>
+  </div>
+
+  <div id="flowerSection"></div>
+
+  <script>
+    function showWelcome() {
+      document.getElementById('linkSection').style.display = 'none';
+      document.getElementById('welcomeSection').style.display = 'block';
+    }
+
+    function showFlowers() {
+      const flowerSection = document.getElementById('flowerSection');
+      flowerSection.style.display = 'block';
+
+      const symbols = ['🌸','🌷','🌺','💐','❤️','💖','💕','🌹'];
+      for (let i = 0; i < 50; i++) {
+        const flower = document.createElement('div');
+        flower.classList.add('flower');
+        flower.style.left = Math.random() * 100 + 'vw';
+        flower.style.top = Math.random() * 100 + 'vh';
+        flower.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        flower.style.animationDuration = (2 + Math.random() * 3) + 's';
+        flowerSection.appendChild(flower);
+
+        // Remove after animation
+        setTimeout(() => flower.remove(), 5000);
+      }
+    }
+  </script>
+</body>
+</html>
